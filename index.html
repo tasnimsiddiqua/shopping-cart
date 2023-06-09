@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default" id="minusPhone"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="numberPhone" class="form-control text-center" value="1">
+                           <button class="btn btn-default" id="addPhone"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="pricePhone">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default" id="minusCover"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="numberCover" class="form-control text-center" value="1">
+                           <button class="btn btn-default" id="addCover"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="priceCover">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="currentSubtotal">1278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$ <span id="currentTotal">1278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      // used common functions 
+      function updateNum(id, updateAmount) {
+         var counting = document.getElementById(id).value;
+         var valueNum = parseFloat(counting);
+         var newNumber = valueNum + updateAmount;
+         if (newNumber >= 0) {
+            document.getElementById(id).value = newNumber;
+         }
+      }
+
+      function updatePrice(id, value) {
+         var current = document.getElementById(id).innerText;
+         var number = parseFloat(current);
+         var newNum = number + value;
+         if (newNum >= 0) {
+            document.getElementById(id).innerText = newNum;
+         }
+      }
+
+      // phone purchese button
+      var addBtn = document.getElementById('addPhone');
+      addBtn.addEventListener('click', function () {
+
+         updateNum("numberPhone", 1);
+
+         // phone price adding
+         var onePhone = 1219;
+         updatePrice("pricePhone", onePhone);
+
+         // adding subtotal
+         updatePrice("currentSubtotal", onePhone)
+
+         // adding total
+         updatePrice("currentTotal", onePhone)
+      })
+
+      // phone decreasing button
+      var minusBtn = document.getElementById('minusPhone');
+      minusBtn.addEventListener('click', function () {
+
+         updateNum("numberPhone", -1);
+
+         // phone price decresing
+         var onePhone = 1219;
+         updatePrice("pricePhone", -1 * onePhone)
+
+         // decresing subtotal
+         updatePrice("currentSubtotal", -1 * onePhone)
+
+         // decresing total
+         updatePrice("currentTotal", -1 * onePhone)
+      })
+
+      // cover adding button
+      var addBtn = document.getElementById('addCover');
+      addBtn.addEventListener('click', function () {
+
+         updateNum("numberCover", 1);
+
+         // cover price adding
+         var oneCover = 59;
+         updatePrice("priceCover", oneCover)
+
+         // adding subtotal 
+         updatePrice("currentSubtotal", oneCover);
+
+         // adding total
+         updatePrice("currentTotal", oneCover);
+      })
+
+      // cover decreasing button
+      var minusBtn = document.getElementById('minusCover');
+      minusBtn.addEventListener('click', function () {
+
+         updateNum("numberCover", -1);
+
+         // cover price decresing
+         var oneCover = 59;
+         updatePrice("priceCover", -1 * oneCover)
+
+         // decresing subtotal
+         updatePrice("currentSubtotal", -1 * oneCover)
+
+         // decresing total
+         updatePrice("currentTotal", -1 * oneCover)
+      })
+   </script>
+</body>
+
+</html>
